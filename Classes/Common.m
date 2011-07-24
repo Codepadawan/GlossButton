@@ -91,7 +91,10 @@ void drawCurvedGloss(CGContextRef context, CGRect rect, CGFloat radius) {
 	CGPathCloseSubpath(glossPath);
 	CGContextAddPath(context, glossPath);
 	CGContextClip(context);
-	CGContextAddPath(context, createRoundedRectForRect(rect, 6.0f));
+	
+	CGMutablePathRef buttonPath=createRoundedRectForRect(rect, 6.0f);
+	
+	CGContextAddPath(context, buttonPath);
 	CGContextClip(context);
 	
 	CGRect half = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height/2);    
@@ -99,6 +102,8 @@ void drawCurvedGloss(CGContextRef context, CGRect rect, CGFloat radius) {
 	drawLinearGradient(context, half, glossStart, glossEnd);
 	CGContextRestoreGState(context);
     
+	CGPathRelease(buttonPath);
+	CGPathRelease(glossPath);
 }
 
 /*

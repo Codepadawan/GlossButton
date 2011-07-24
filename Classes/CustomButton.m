@@ -182,6 +182,7 @@
 		CGContextRestoreGState(context);
 		
 		drawCurvedGloss(context, outerRect, 180);
+		CFRelease(highlightPath);
 
 	}
 	else {
